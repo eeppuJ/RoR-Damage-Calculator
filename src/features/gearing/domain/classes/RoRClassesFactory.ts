@@ -24,7 +24,7 @@ import { BlackOrc } from "@/features/gearing/domain/classes/destruction/greenski
 import { Choppa } from "@/features/gearing/domain/classes/destruction/greenskins/Choppa";
 import { Shaman } from "@/features/gearing/domain/classes/destruction/greenskins/Shaman";
 import { SquigHerder } from "@/features/gearing/domain/classes/destruction/greenskins/SquigHerder";
-import { UnknownClassError } from "@/features/gearing/application/commands/UnknownClassError";
+import { UnknownClassError } from "@/features/gearing/application/commands/port/characters/UnknownClassError";
 
 export class RoRClassesFactory {
   private readonly classes = new Set<RoRClass>();

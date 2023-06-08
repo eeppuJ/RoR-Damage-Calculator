@@ -7,7 +7,7 @@ import { Initiative } from "@/features/gearing/domain/stats/Initiative";
 import { Willpower } from "@/features/gearing/domain/stats/Willpower";
 import { Wounds } from "@/features/gearing/domain/stats/Wounds";
 import type { RoRClass } from "@/features/gearing/domain/classes/RoRClass";
-import { NoRoRClass } from "@/features/gearing/domain/NoRoRClass";
+import { NoRoRClass } from "@/features/gearing/domain/classes/NoRoRClass";
 import { ItemId } from "@/features/gearing/domain/items/ItemId";
 
 export abstract class ItemBuilder<T> {

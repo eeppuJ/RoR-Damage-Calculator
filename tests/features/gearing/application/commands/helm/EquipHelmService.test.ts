@@ -3,13 +3,13 @@ import {
   ATTACKER_ID,
   InMemoryCharacterAdapter,
 } from "@/features/gearing/adapter/out/InMemoryCharacterAdapter";
-import { expectCharacter } from "./CharacterAssertions";
+import { expectCharacter } from "../CharacterAssertions";
 import { Shaman } from "@/features/gearing/domain/classes/destruction/greenskins/Shaman";
-import { NoRoRClass } from "@/features/gearing/domain/NoRoRClass";
+import { NoRoRClass } from "@/features/gearing/domain/classes/NoRoRClass";
 import { CharacterBuilder } from "@/features/gearing/domain/CharacterBuilder";
-import type { LoadHelmPort } from "@/features/gearing/application/commands/port/out/LoadHelmPort";
-import { EquipHelmService } from "@/features/gearing/application/commands/port/EquipHelmService";
-import { EquipHelmCommand } from "@/features/gearing/application/commands/port/in/EquipHelm";
+import type { LoadHelmPort } from "@/features/gearing/application/commands/port/helm/out/LoadHelmPort";
+import { EquipHelmService } from "@/features/gearing/application/commands/port/helm/EquipHelmService";
+import { EquipHelmCommand } from "@/features/gearing/application/commands/port/helm/in/EquipHelm";
 import { InMemoryHelmAdapter } from "@/features/gearing/adapter/out/InMemoryHelmAdapter";
 import { HelmBuilder } from "@/features/gearing/domain/items/helm/HelmBuilder";
 import { HelmId } from "@/features/gearing/domain/items/helm/HelmId";

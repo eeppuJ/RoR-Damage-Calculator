@@ -1,11 +1,11 @@
 import type {
   ChooseClass,
   ChooseClassCommand,
-} from "@/features/gearing/application/commands/port/in/ChooseClass";
-import { UnknownCharacterError } from "@/features/gearing/application/commands/UnknownCharacterError";
-import type { LoadCharacterPort } from "@/features/gearing/application/commands/port/out/LoadCharacterPort";
+} from "@/features/gearing/application/commands/port/characters/in/ChooseClass";
+import { UnknownCharacterError } from "@/features/gearing/application/commands/port/characters/UnknownCharacterError";
+import type { LoadCharacterPort } from "@/features/gearing/application/commands/port/characters/out/LoadCharacterPort";
 import { RoRClassesFactory } from "@/features/gearing/domain/classes/RoRClassesFactory";
-import type { CharacterUpdaterPort } from "@/features/gearing/application/commands/port/out/CharacterUpdaterPort";
+import type { CharacterUpdaterPort } from "@/features/gearing/application/commands/port/characters/out/CharacterUpdaterPort";
 
 export class ChooseClassService implements ChooseClass {
   private readonly loadCharacterPort: LoadCharacterPort;

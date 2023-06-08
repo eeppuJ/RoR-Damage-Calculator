@@ -1,13 +1,13 @@
 import { expect, test } from "vitest";
-import { ChooseClassCommand } from "@/features/gearing/application/commands/port/in/ChooseClass";
-import { ChooseClassService } from "@/features/gearing/application/commands/ChooseClassService";
-import { FakeLoadCharacterPort } from "../../adapter/out/FakeLoadCharacterPort";
+import { ChooseClassCommand } from "@/features/gearing/application/commands/port/characters/in/ChooseClass";
+import { ChooseClassService } from "@/features/gearing/application/commands/port/characters/ChooseClassService";
+import { FakeLoadCharacterPort } from "../../../adapter/out/FakeLoadCharacterPort";
 import {
   Engineer,
   ENGINEER_ID,
 } from "@/features/gearing/domain/classes/order/dwarves/Engineer";
-import { FakeCharacterUpdatePort } from "../../adapter/out/FakeCharacterUpdatePort";
-import { expectCharacter } from "./CharacterAssertions";
+import { FakeCharacterUpdatePort } from "../../../adapter/out/FakeCharacterUpdatePort";
+import { expectCharacter } from "../CharacterAssertions";
 import { SHAMAN_ID } from "@/features/gearing/domain/classes/destruction/greenskins/Shaman";
 import { DISCIPLE_OF_KHAINE_ID } from "@/features/gearing/domain/classes/destruction/darkelves/DiscipleOfKhaine";
 import { ZEALOT_ID } from "@/features/gearing/domain/classes/destruction/chaos/Zealot";

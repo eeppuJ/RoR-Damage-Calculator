@@ -1,5 +1,5 @@
 import type { RoRClass } from "@/features/gearing/domain/classes/RoRClass";
-import { NoRoRClass } from "@/features/gearing/domain/NoRoRClass";
+import { NoRoRClass } from "@/features/gearing/domain/classes/NoRoRClass";
 import { CharacterId } from "@/features/gearing/domain/CharacterId";
 import type { Boots } from "@/features/gearing/domain/items/boots/Boots";
 import { BootsBuilder } from "@/features/gearing/domain/items/boots/BootsBuilder";

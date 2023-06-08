@@ -1,12 +1,12 @@
 import type {
   EquipBoots,
   EquipBootsCommand,
-} from "@/features/gearing/application/commands/port/in/EquipBoots";
-import type { LoadBootsPort } from "@/features/gearing/application/commands/port/out/LoadBootsPort";
-import { UnknownBootsError } from "@/features/gearing/application/commands/UnknownBootsError";
-import type { LoadCharacterPort } from "@/features/gearing/application/commands/port/out/LoadCharacterPort";
-import { UnknownCharacterError } from "@/features/gearing/application/commands/UnknownCharacterError";
-import type { CharacterUpdaterPort } from "@/features/gearing/application/commands/port/out/CharacterUpdaterPort";
+} from "@/features/gearing/application/commands/port/boots/in/EquipBoots";
+import type { LoadBootsPort } from "@/features/gearing/application/commands/port/boots/out/LoadBootsPort";
+import { UnknownBootsError } from "@/features/gearing/application/commands/port/boots/UnknownBootsError";
+import type { LoadCharacterPort } from "@/features/gearing/application/commands/port/characters/out/LoadCharacterPort";
+import { UnknownCharacterError } from "@/features/gearing/application/commands/port/characters/UnknownCharacterError";
+import type { CharacterUpdaterPort } from "@/features/gearing/application/commands/port/characters/out/CharacterUpdaterPort";
 
 export class EquipBootsService implements EquipBoots {
   private readonly loadBootsPorts: LoadBootsPort;

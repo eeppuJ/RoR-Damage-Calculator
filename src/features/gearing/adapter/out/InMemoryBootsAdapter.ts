@@ -1,4 +1,4 @@
-import type { LoadBootsPort } from "@/features/gearing/application/commands/port/out/LoadBootsPort";
+import type { LoadBootsPort } from "@/features/gearing/application/commands/port/boots/out/LoadBootsPort";
 import type { Boots } from "@/features/gearing/domain/items/boots/Boots";
 import type { BootsId } from "@/features/gearing/domain/items/boots/BootsId";
 

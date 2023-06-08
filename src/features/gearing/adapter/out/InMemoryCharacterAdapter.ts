@@ -1,6 +1,6 @@
-import type { CharacterUpdaterPort } from "@/features/gearing/application/commands/port/out/CharacterUpdaterPort";
+import type { CharacterUpdaterPort } from "@/features/gearing/application/commands/port/characters/out/CharacterUpdaterPort";
 import type { Character } from "@/features/gearing/domain/Character";
-import type { LoadCharacterPort } from "@/features/gearing/application/commands/port/out/LoadCharacterPort";
+import type { LoadCharacterPort } from "@/features/gearing/application/commands/port/characters/out/LoadCharacterPort";
 import { CharacterId } from "@/features/gearing/domain/CharacterId";
 import { CharacterBuilder } from "@/features/gearing/domain/CharacterBuilder";
 

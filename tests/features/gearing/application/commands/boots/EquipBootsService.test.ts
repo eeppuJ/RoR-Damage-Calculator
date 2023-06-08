@@ -1,15 +1,15 @@
 import { expect, test } from "vitest";
-import { EquipBootsService } from "@/features/gearing/application/commands/EquipBootsService";
-import { EquipBootsCommand } from "@/features/gearing/application/commands/port/in/EquipBoots";
-import type { LoadBootsPort } from "@/features/gearing/application/commands/port/out/LoadBootsPort";
+import { EquipBootsService } from "@/features/gearing/application/commands/port/boots/EquipBootsService";
+import { EquipBootsCommand } from "@/features/gearing/application/commands/port/boots/in/EquipBoots";
+import type { LoadBootsPort } from "@/features/gearing/application/commands/port/boots/out/LoadBootsPort";
 import { InMemoryBootsAdapter } from "@/features/gearing/adapter/out/InMemoryBootsAdapter";
 import {
   ATTACKER_ID,
   InMemoryCharacterAdapter,
 } from "@/features/gearing/adapter/out/InMemoryCharacterAdapter";
-import { expectCharacter } from "./CharacterAssertions";
+import { expectCharacter } from "../CharacterAssertions";
 import { Shaman } from "@/features/gearing/domain/classes/destruction/greenskins/Shaman";
-import { NoRoRClass } from "@/features/gearing/domain/NoRoRClass";
+import { NoRoRClass } from "@/features/gearing/domain/classes/NoRoRClass";
 import { BootsBuilder } from "@/features/gearing/domain/items/boots/BootsBuilder";
 import { BootsId } from "@/features/gearing/domain/items/boots/BootsId";
 import { CharacterBuilder } from "@/features/gearing/domain/CharacterBuilder";

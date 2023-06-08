@@ -1,12 +1,12 @@
 import type {
   EquipHelm,
   EquipHelmCommand,
-} from "@/features/gearing/application/commands/port/in/EquipHelm";
-import type { LoadCharacterPort } from "@/features/gearing/application/commands/port/out/LoadCharacterPort";
-import type { CharacterUpdaterPort } from "@/features/gearing/application/commands/port/out/CharacterUpdaterPort";
-import { UnknownCharacterError } from "@/features/gearing/application/commands/UnknownCharacterError";
-import type { LoadHelmPort } from "@/features/gearing/application/commands/port/out/LoadHelmPort";
-import { UnknownHelmError } from "@/features/gearing/application/commands/UnknownHelmError";
+} from "@/features/gearing/application/commands/port/helm/in/EquipHelm";
+import type { LoadCharacterPort } from "@/features/gearing/application/commands/port/characters/out/LoadCharacterPort";
+import type { CharacterUpdaterPort } from "@/features/gearing/application/commands/port/characters/out/CharacterUpdaterPort";
+import { UnknownCharacterError } from "@/features/gearing/application/commands/port/characters/UnknownCharacterError";
+import type { LoadHelmPort } from "@/features/gearing/application/commands/port/helm/out/LoadHelmPort";
+import { UnknownHelmError } from "@/features/gearing/application/commands/port/helm/UnknownHelmError";
 
 export class EquipHelmService implements EquipHelm {
   private readonly loadHelmPort: LoadHelmPort;
