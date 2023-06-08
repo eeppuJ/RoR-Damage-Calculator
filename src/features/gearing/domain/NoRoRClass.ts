@@ -9,7 +9,7 @@ import { WeaponSkill } from "@/features/gearing/domain/stats/WeaponSkill";
 import { Willpower } from "@/features/gearing/domain/stats/Willpower";
 import { Wounds } from "@/features/gearing/domain/stats/Wounds";
 
-export class NullRoRClass implements RoRClass {
+export class NoRoRClass implements RoRClass {
   readonly classId: ClassId = new ClassId(100);
   readonly strength: Strength = new Strength(0);
   readonly ballisticSkill: BallisticSkill = new BallisticSkill(0);

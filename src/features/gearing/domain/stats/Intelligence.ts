@@ -4,4 +4,8 @@ export class Intelligence extends PrimaryStats {
   constructor(value: number) {
     super(value);
   }
+
+  of(value: number): PrimaryStats {
+    return new Intelligence(value);
+  }
 }

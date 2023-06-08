@@ -21,7 +21,7 @@ export class ChooseClassService implements ChooseClass {
     this.characterUpdaterPort = characterUpdaterPort;
   }
 
-  handle(chooseClassCommand: ChooseClassCommand): any {
+  handle(chooseClassCommand: ChooseClassCommand): void {
     const rorClass = this.rorClassesFactory.of(chooseClassCommand.classId);
     const character = this.loadCharacterPort.load(
       chooseClassCommand.characterId
