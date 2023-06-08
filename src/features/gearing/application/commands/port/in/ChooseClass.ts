@@ -12,5 +12,5 @@ export class ChooseClassCommand {
 }
 
 export interface ChooseClass {
-  handle: (chooseClassCommand: ChooseClassCommand) => any;
+  handle: (chooseClassCommand: ChooseClassCommand) => void;
 }

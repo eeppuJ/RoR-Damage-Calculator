@@ -12,5 +12,5 @@ export class EquipBootsCommand {
 }
 
 export interface EquipBoots {
-  handle: (equipBootsCommand: EquipBootsCommand) => any;
+  handle: (equipBootsCommand: EquipBootsCommand) => void;
 }
