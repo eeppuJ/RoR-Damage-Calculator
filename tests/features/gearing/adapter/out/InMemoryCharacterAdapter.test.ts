@@ -5,10 +5,10 @@ import {
   TARGET_ID,
 } from "@/features/gearing/adapter/out/InMemoryCharacterAdapter";
 import { CharacterId } from "@/features/gearing/domain/CharacterId";
-import { CharacterBuilder } from "@/features/gearing/domain/Character";
 import { WitchElf } from "@/features/gearing/domain/classes/destruction/darkelves/WitchElf";
 import { WitchHunter } from "@/features/gearing/domain/classes/order/empire/WitchHunter";
 import { Engineer } from "@/features/gearing/domain/classes/order/dwarves/Engineer";
+import { CharacterBuilder } from "@/features/gearing/domain/CharacterBuilder";
 
 const inMemoryCharacterAdapter = new InMemoryCharacterAdapter();
 

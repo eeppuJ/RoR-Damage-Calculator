@@ -1,7 +1,8 @@
-import type { BootsId } from "@/features/gearing/domain/items/BootsId";
+import type { BootsId } from "@/features/gearing/domain/items/boots/BootsId";
+import { UnknownItemError } from "@/features/gearing/application/commands/UnknownItemError";
 
-export class UnknownBootsError extends Error {
+export class UnknownBootsError extends UnknownItemError {
   constructor(bootsId: BootsId) {
-    super(`Unknown boots with ID : ${bootsId.id}`);
+    super(bootsId, "boots");
   }
 }

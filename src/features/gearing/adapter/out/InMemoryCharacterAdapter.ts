@@ -1,10 +1,8 @@
 import type { CharacterUpdaterPort } from "@/features/gearing/application/commands/port/out/CharacterUpdaterPort";
-import {
-  Character,
-  CharacterBuilder,
-} from "@/features/gearing/domain/Character";
+import type { Character } from "@/features/gearing/domain/Character";
 import type { LoadCharacterPort } from "@/features/gearing/application/commands/port/out/LoadCharacterPort";
 import { CharacterId } from "@/features/gearing/domain/CharacterId";
+import { CharacterBuilder } from "@/features/gearing/domain/CharacterBuilder";
 
 export const ATTACKER_ID = new CharacterId(1);
 export const TARGET_ID = new CharacterId(2);

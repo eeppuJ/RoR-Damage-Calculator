@@ -8,4 +8,8 @@ export class ItemId {
     assert(id > 0, `Item ID ${id} can not be negative`);
     this.id = id;
   }
+
+  equals(itemId: ItemId): Boolean {
+    return this.id == itemId.id && this.constructor == itemId.constructor;
+  }
 }

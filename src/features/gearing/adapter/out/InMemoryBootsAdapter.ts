@@ -1,6 +1,6 @@
 import type { LoadBootsPort } from "@/features/gearing/application/commands/port/out/LoadBootsPort";
-import type { Boots } from "@/features/gearing/domain/items/Boots";
-import type { BootsId } from "@/features/gearing/domain/items/BootsId";
+import type { Boots } from "@/features/gearing/domain/items/boots/Boots";
+import type { BootsId } from "@/features/gearing/domain/items/boots/BootsId";
 
 export class InMemoryBootsAdapter implements LoadBootsPort {
   private readonly boots: Boots[] = [];

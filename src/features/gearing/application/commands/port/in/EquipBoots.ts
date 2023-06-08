@@ -1,5 +1,5 @@
 import { CharacterId } from "@/features/gearing/domain/CharacterId";
-import { BootsId } from "@/features/gearing/domain/items/BootsId";
+import { BootsId } from "@/features/gearing/domain/items/boots/BootsId";
 
 export class EquipBootsCommand {
   readonly bootsId: BootsId;

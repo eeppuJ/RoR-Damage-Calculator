@@ -2,8 +2,9 @@ import type { LoadCharacterPort } from "@/features/gearing/application/commands/
 import { CharacterId } from "@/features/gearing/domain/CharacterId";
 import {
   Character,
-  CharacterBuilder,
+
 } from "@/features/gearing/domain/Character";
+import { CharacterBuilder } from "@/features/gearing/domain/CharacterBuilder";
 
 export class FakeLoadCharacterPort implements LoadCharacterPort {
   private knownCharacterId: CharacterId = new CharacterId(99);

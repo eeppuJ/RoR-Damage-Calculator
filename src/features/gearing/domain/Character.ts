@@ -1,5 +1,4 @@
 import type { RoRClass } from "@/features/gearing/domain/classes/RoRClass";
-import { NoRoRClass } from "@/features/gearing/domain/NoRoRClass";
 import type { Strength } from "@/features/gearing/domain/stats/Strength";
 import type { BallisticSkill } from "@/features/gearing/domain/stats/BallisticSkill";
 import type { Intelligence } from "@/features/gearing/domain/stats/Intelligence";
@@ -8,19 +7,25 @@ import type { WeaponSkill } from "@/features/gearing/domain/stats/WeaponSkill";
 import type { Initiative } from "@/features/gearing/domain/stats/Initiative";
 import type { Willpower } from "@/features/gearing/domain/stats/Willpower";
 import type { Wounds } from "@/features/gearing/domain/stats/Wounds";
-import { CharacterId } from "@/features/gearing/domain/CharacterId";
-import { Boots, BootsBuilder } from "@/features/gearing/domain/items/Boots";
-import { CanNotEquipBootsError } from "@/features/gearing/domain/items/CanNotEquipBoots";
+import type { CharacterId } from "@/features/gearing/domain/CharacterId";
+import type { Boots } from "@/features/gearing/domain/items/boots/Boots";
+import { CanNotEquipBootsError } from "@/features/gearing/domain/items/boots/CanNotEquipBoots";
+import type { Helm } from "@/features/gearing/domain/items/helm/Helm";
+import type { Item } from "@/features/gearing/domain/items/Item";
+import { CanNotEquipHelmError } from "@/features/gearing/domain/items/helm/CanNotEquipHelm";
+import { CharacterBuilder } from "@/features/gearing/domain/CharacterBuilder";
 
 export class Character {
   private readonly characterId: CharacterId;
   rorClass: RoRClass;
   private boots: Boots;
+  private helm: Helm;
 
   constructor(builder: CharacterBuilder = new CharacterBuilder()) {
     this.rorClass = builder.rorClass;
     this.characterId = builder.characterId;
     this.boots = builder.boots;
+    this.helm = builder.helm;
   }
 
   hasId(characterId: CharacterId): Boolean {
@@ -32,65 +37,66 @@ export class Character {
   }
 
   strength(): Strength {
-    return this.rorClass.strength.add(this.boots.strength);
+    return this.rorClass.strength
+      .add(this.boots.strength)
+      .add(this.helm.strength);
   }
 
   ballisticSkill(): BallisticSkill {
-    return this.rorClass.ballisticSkill.add(this.boots.ballisticSkill);
+    return this.rorClass.ballisticSkill
+      .add(this.boots.ballisticSkill)
+      .add(this.helm.ballisticSkill);
   }
 
   intelligence(): Intelligence {
-    return this.rorClass.intelligence.add(this.boots.intelligence);
+    return this.rorClass.intelligence
+      .add(this.boots.intelligence)
+      .add(this.helm.intelligence);
   }
 
   toughness(): Toughness {
-    return this.rorClass.toughness.add(this.boots.toughness);
+    return this.rorClass.toughness
+      .add(this.boots.toughness)
+      .add(this.helm.toughness);
   }
 
   weaponSkill(): WeaponSkill {
-    return this.rorClass.weaponSkill.add(this.boots.weaponSkill);
+    return this.rorClass.weaponSkill
+      .add(this.boots.weaponSkill)
+      .add(this.helm.weaponSkill);
   }
 
   initiative(): Initiative {
-    return this.rorClass.initiative.add(this.boots.initiative);
+    return this.rorClass.initiative
+      .add(this.boots.initiative)
+      .add(this.helm.initiative);
   }
 
   willpower(): Willpower {
-    return this.rorClass.willpower.add(this.boots.willpower);
+    return this.rorClass.willpower
+      .add(this.boots.willpower)
+      .add(this.helm.willpower);
   }
 
   wounds(): Wounds {
-    return this.rorClass.wounds.add(this.boots.wounds);
+    return this.rorClass.wounds.add(this.boots.wounds).add(this.helm.wounds);
   }
 
   equipBoots(boots: Boots) {
     if (this.canNotEquip(boots)) {
-      throw new CanNotEquipBootsError(this.characterId, boots.bootsId);
+      throw new CanNotEquipBootsError(this.characterId, boots.itemId);
     }
     this.boots = boots;
   }
 
-  private canNotEquip(boots: Boots): Boolean {
-    return !boots.rorClass.classId.equals(this.rorClass.classId);
-  }
-}
-
-export class CharacterBuilder {
-  rorClass: RoRClass = new NoRoRClass();
-  characterId: CharacterId = new CharacterId(99);
-  boots: Boots = BootsBuilder.noBoots();
-
-  withRoRClass(rorClass: RoRClass): CharacterBuilder {
-    this.rorClass = rorClass;
-    return this;
+  equipHelm(helm: Helm) {
+    if (this.canNotEquip(helm)) {
+      throw new CanNotEquipHelmError(this.characterId, helm.itemId);
+    }
+    this.helm = helm;
   }
 
-  withCharacterId(characterId: CharacterId): CharacterBuilder {
-    this.characterId = characterId;
-    return this;
-  }
-
-  build(): Character {
-    return new Character(this);
+  private canNotEquip(item: Item): Boolean {
+    return !item.rorClass.classId.equals(this.rorClass.classId);
   }
 }

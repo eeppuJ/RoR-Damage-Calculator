@@ -2,7 +2,6 @@ import { expect, test } from "vitest";
 import { ChooseClassCommand } from "@/features/gearing/application/commands/port/in/ChooseClass";
 import { ChooseClassService } from "@/features/gearing/application/commands/ChooseClassService";
 import { FakeLoadCharacterPort } from "../../adapter/out/FakeLoadCharacterPort";
-import { CharacterBuilder } from "@/features/gearing/domain/Character";
 import {
   Engineer,
   ENGINEER_ID,
@@ -32,6 +31,7 @@ import { WITCH_HUNTER_ID } from "@/features/gearing/domain/classes/order/empire/
 import { SLAYER_ID } from "@/features/gearing/domain/classes/order/dwarves/Slayer";
 import { SHADOW_WARRIOR_ID } from "@/features/gearing/domain/classes/order/highelves/ShadowWarrior";
 import { BRIGHT_WIZARD_ID } from "@/features/gearing/domain/classes/order/empire/BrightWizard";
+import { CharacterBuilder } from "@/features/gearing/domain/CharacterBuilder";
 
 const UNKNOWN_CLASS_ID = 29;
 const UNKNOWN_CHARACTER_ID = 3;

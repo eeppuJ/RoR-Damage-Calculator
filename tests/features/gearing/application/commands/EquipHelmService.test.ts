@@ -1,8 +1,4 @@
 import { expect, test } from "vitest";
-import { EquipBootsService } from "@/features/gearing/application/commands/EquipBootsService";
-import { EquipBootsCommand } from "@/features/gearing/application/commands/port/in/EquipBoots";
-import type { LoadBootsPort } from "@/features/gearing/application/commands/port/out/LoadBootsPort";
-import { InMemoryBootsAdapter } from "@/features/gearing/adapter/out/InMemoryBootsAdapter";
 import {
   ATTACKER_ID,
   InMemoryCharacterAdapter,
@@ -10,14 +6,18 @@ import {
 import { expectCharacter } from "./CharacterAssertions";
 import { Shaman } from "@/features/gearing/domain/classes/destruction/greenskins/Shaman";
 import { NoRoRClass } from "@/features/gearing/domain/NoRoRClass";
-import { BootsBuilder } from "@/features/gearing/domain/items/boots/BootsBuilder";
-import { BootsId } from "@/features/gearing/domain/items/boots/BootsId";
 import { CharacterBuilder } from "@/features/gearing/domain/CharacterBuilder";
+import type { LoadHelmPort } from "@/features/gearing/application/commands/port/out/LoadHelmPort";
+import { EquipHelmService } from "@/features/gearing/application/commands/port/EquipHelmService";
+import { EquipHelmCommand } from "@/features/gearing/application/commands/port/in/EquipHelm";
+import { InMemoryHelmAdapter } from "@/features/gearing/adapter/out/InMemoryHelmAdapter";
+import { HelmBuilder } from "@/features/gearing/domain/items/helm/HelmBuilder";
+import { HelmId } from "@/features/gearing/domain/items/helm/HelmId";
 
-const loadBootsPort: LoadBootsPort = new InMemoryBootsAdapter([
-  BootsBuilder.boots()
+const loadHelmPort: LoadHelmPort = new InMemoryHelmAdapter([
+  HelmBuilder.helm()
     .for(new NoRoRClass())
-    .withId(new BootsId(2))
+    .withId(new HelmId(2))
     .withBallisticSkill(20)
     .withStrength(10)
     .withInitiative(99)
@@ -29,29 +29,29 @@ const loadBootsPort: LoadBootsPort = new InMemoryBootsAdapter([
     .build(),
 ]);
 const inMemoryCharacterAdapter = new InMemoryCharacterAdapter();
-const equipBootsService = new EquipBootsService(
-  loadBootsPort,
+const equipHelmService = new EquipHelmService(
+  loadHelmPort,
   inMemoryCharacterAdapter,
   inMemoryCharacterAdapter
 );
 
-test("For an unknown boots, should throw an exception", () => {
+test("For an unknown helm, should throw an exception", () => {
   expect(() => {
-    equipBootsService.handle(new EquipBootsCommand(1, 1));
-  }).toThrowError("Unknown boots with ID : 1");
+    equipHelmService.handle(new EquipHelmCommand(1, 1));
+  }).toThrowError("Unknown helm with ID : 1");
 });
 
 test("For an unknown character, should throw an exception", () => {
   expect(() => {
-    equipBootsService.handle(new EquipBootsCommand(2, 999));
+    equipHelmService.handle(new EquipHelmCommand(2, 999));
   }).toThrowError("Unknown character with ID : 999");
 });
 
 test("For boots from a different class, should throw an exception", () => {
   expect(() => {
     const inMemoryCharacterAdapter = new InMemoryCharacterAdapter();
-    const equipBootsService = new EquipBootsService(
-      loadBootsPort,
+    const equipHelmService = new EquipHelmService(
+      loadHelmPort,
       inMemoryCharacterAdapter,
       inMemoryCharacterAdapter
     );
@@ -61,12 +61,12 @@ test("For boots from a different class, should throw an exception", () => {
       .build();
     inMemoryCharacterAdapter.save(shaman);
 
-    equipBootsService.handle(new EquipBootsCommand(2, 1));
-  }).toThrowError("The character with ID 1 can't equip the boots with ID 2");
+    equipHelmService.handle(new EquipHelmCommand(2, 1));
+  }).toThrowError("The character with ID 1 can't equip the helm with ID 2");
 });
 
-test("For boots with stats, the character should have new stats", () => {
-  equipBootsService.handle(new EquipBootsCommand(2, 1));
+test("For helm with stats, the character should have new stats", () => {
+  equipHelmService.handle(new EquipHelmCommand(2, 1));
 
   const character = inMemoryCharacterAdapter.load(ATTACKER_ID);
   expectCharacter(character)
