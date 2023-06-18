@@ -1,40 +1,22 @@
-import type {
-  EquipBoots,
-  EquipBootsCommand,
-} from "@/features/gearing/application/commands/port/boots/in/EquipBoots";
 import type { LoadBootsPort } from "@/features/gearing/application/commands/port/boots/out/LoadBootsPort";
-import { UnknownBootsError } from "@/features/gearing/application/commands/port/boots/UnknownBootsError";
 import type { LoadCharacterPort } from "@/features/gearing/application/commands/port/characters/out/LoadCharacterPort";
-import { UnknownCharacterError } from "@/features/gearing/application/commands/port/characters/UnknownCharacterError";
 import type { CharacterUpdaterPort } from "@/features/gearing/application/commands/port/characters/out/CharacterUpdaterPort";
+import type { Boots } from "@/features/gearing/domain/items/boots/Boots";
+import type { Character } from "@/features/gearing/domain/Character";
+import { EquipItem } from "@/features/gearing/application/commands/port/items/in/EquipItem";
 
-export class EquipBootsService implements EquipBoots {
-  private readonly loadBootsPorts: LoadBootsPort;
-  private readonly loadCharacterPort: LoadCharacterPort;
-  private readonly characterUpdaterPort: CharacterUpdaterPort;
-
+export class EquipBootsService extends EquipItem<Boots> {
   constructor(
-    loadBootsPort: LoadBootsPort,
+    loadItemPort: LoadBootsPort,
     loadCharacterPort: LoadCharacterPort,
     characterUpdaterPort: CharacterUpdaterPort
   ) {
-    this.loadBootsPorts = loadBootsPort;
-    this.loadCharacterPort = loadCharacterPort;
-    this.characterUpdaterPort = characterUpdaterPort;
+    super(loadItemPort, loadCharacterPort, characterUpdaterPort);
   }
 
-  handle(equipBootsCommand: EquipBootsCommand): void {
-    const boots = this.loadBootsPorts.load(equipBootsCommand.bootsId);
-    if (boots == undefined) {
-      throw new UnknownBootsError(equipBootsCommand.bootsId);
-    }
-    const character = this.loadCharacterPort.load(
-      equipBootsCommand.characterId
-    );
-    if (character == undefined) {
-      throw new UnknownCharacterError(equipBootsCommand.characterId);
-    }
-    character.equipBoots(boots);
-    this.characterUpdaterPort.save(character);
+  equipItem(character: Character, item: Boots): void {
+    character.equipBoots(item);
   }
+
+  protected itemType: String = "boots";
 }

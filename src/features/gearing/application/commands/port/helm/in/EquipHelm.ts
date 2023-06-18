@@ -1,16 +1,8 @@
-import { CharacterId } from "@/features/gearing/domain/CharacterId";
 import { HelmId } from "@/features/gearing/domain/items/helm/HelmId";
+import { EquipItemCommand } from "@/features/gearing/application/commands/port/items/in/EquipItem";
 
-export class EquipHelmCommand {
-  readonly helmId: HelmId;
-  readonly characterId: CharacterId;
-
+export class EquipHelmCommand extends EquipItemCommand {
   constructor(helmId: number, characterId: number) {
-    this.helmId = new HelmId(helmId);
-    this.characterId = new CharacterId(characterId);
+    super(new HelmId(helmId), characterId);
   }
-}
-
-export interface EquipHelm {
-  handle: (equipHelmCommand: EquipHelmCommand) => void;
 }

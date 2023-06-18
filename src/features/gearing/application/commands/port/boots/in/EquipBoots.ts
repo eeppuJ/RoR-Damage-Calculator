@@ -1,16 +1,8 @@
-import { CharacterId } from "@/features/gearing/domain/CharacterId";
 import { BootsId } from "@/features/gearing/domain/items/boots/BootsId";
+import { EquipItemCommand } from "@/features/gearing/application/commands/port/items/in/EquipItem";
 
-export class EquipBootsCommand {
-  readonly bootsId: BootsId;
-  readonly characterId: CharacterId;
-
+export class EquipBootsCommand extends EquipItemCommand {
   constructor(bootsId: number, characterId: number) {
-    this.bootsId = new BootsId(bootsId);
-    this.characterId = new CharacterId(characterId);
+    super(new BootsId(bootsId), characterId);
   }
-}
-
-export interface EquipBoots {
-  handle: (equipBootsCommand: EquipBootsCommand) => void;
 }

@@ -1,6 +1,4 @@
-import type { HelmId } from "@/features/gearing/domain/items/helm/HelmId";
 import type { Helm } from "@/features/gearing/domain/items/helm/Helm";
+import type { LoadItemPort } from "@/features/gearing/application/commands/port/items/out/LoadItemPort";
 
-export interface LoadHelmPort {
-  load(helmId: HelmId): Helm | undefined;
-}
+export interface LoadHelmPort extends LoadItemPort<Helm> {}

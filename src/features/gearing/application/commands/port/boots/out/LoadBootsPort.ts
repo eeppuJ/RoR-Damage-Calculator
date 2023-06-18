@@ -1,6 +1,4 @@
-import type { BootsId } from "@/features/gearing/domain/items/boots/BootsId";
 import type { Boots } from "@/features/gearing/domain/items/boots/Boots";
+import type { LoadItemPort } from "@/features/gearing/application/commands/port/items/out/LoadItemPort";
 
-export interface LoadBootsPort {
-  load(bootsId: BootsId): Boots | undefined;
-}
+export interface LoadBootsPort extends LoadItemPort<Boots> {}

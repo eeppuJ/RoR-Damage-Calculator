@@ -1,38 +1,22 @@
-import type {
-  EquipHelm,
-  EquipHelmCommand,
-} from "@/features/gearing/application/commands/port/helm/in/EquipHelm";
 import type { LoadCharacterPort } from "@/features/gearing/application/commands/port/characters/out/LoadCharacterPort";
 import type { CharacterUpdaterPort } from "@/features/gearing/application/commands/port/characters/out/CharacterUpdaterPort";
-import { UnknownCharacterError } from "@/features/gearing/application/commands/port/characters/UnknownCharacterError";
 import type { LoadHelmPort } from "@/features/gearing/application/commands/port/helm/out/LoadHelmPort";
-import { UnknownHelmError } from "@/features/gearing/application/commands/port/helm/UnknownHelmError";
+import { EquipItem } from "@/features/gearing/application/commands/port/items/in/EquipItem";
+import type { Helm } from "@/features/gearing/domain/items/helm/Helm";
+import type { Character } from "@/features/gearing/domain/Character";
 
-export class EquipHelmService implements EquipHelm {
-  private readonly loadHelmPort: LoadHelmPort;
-  private readonly loadCharacterPort: LoadCharacterPort;
-  private readonly characterUpdaterPort: CharacterUpdaterPort;
-
+export class EquipHelmService extends EquipItem<Helm> {
   constructor(
-    loadHelmPort: LoadHelmPort,
+    loadItemPort: LoadHelmPort,
     loadCharacterPort: LoadCharacterPort,
     characterUpdaterPort: CharacterUpdaterPort
   ) {
-    this.loadHelmPort = loadHelmPort;
-    this.loadCharacterPort = loadCharacterPort;
-    this.characterUpdaterPort = characterUpdaterPort;
+    super(loadItemPort, loadCharacterPort, characterUpdaterPort);
   }
 
-  handle(equipHelmCommand: EquipHelmCommand): void {
-    const helm = this.loadHelmPort.load(equipHelmCommand.helmId);
-    if (helm == undefined) {
-      throw new UnknownHelmError(equipHelmCommand.helmId);
-    }
-    const character = this.loadCharacterPort.load(equipHelmCommand.characterId);
-    if (character == undefined) {
-      throw new UnknownCharacterError(equipHelmCommand.characterId);
-    }
-    character.equipHelm(helm);
-    this.characterUpdaterPort.save(character);
+  protected equipItem(character: Character, item: Helm): void {
+    character.equipHelm(item);
   }
+
+  protected itemType: String = "helm";
 }
