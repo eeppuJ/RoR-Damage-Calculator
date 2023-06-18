@@ -1,8 +1,5 @@
 import type { CharacterUpdaterPort } from "@/features/gearing/application/commands/port/characters/out/CharacterUpdaterPort";
-import {
-  Character,
-
-} from "@/features/gearing/domain/Character";
+import type { Character } from "@/features/gearing/domain/Character";
 import { CharacterBuilder } from "@/features/gearing/domain/CharacterBuilder";
 
 export class FakeCharacterUpdatePort implements CharacterUpdaterPort {
