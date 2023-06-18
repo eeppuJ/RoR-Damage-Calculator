@@ -16,6 +16,7 @@ import { CanNotEquipHelmError } from "@/features/gearing/domain/items/helm/CanNo
 import { CharacterBuilder } from "@/features/gearing/domain/CharacterBuilder";
 import type { Belt } from "@/features/gearing/domain/items/belt/Belt";
 import { CanNotEquipBeltError } from "@/features/gearing/domain/items/belt/CanNotEquipBoots";
+import { addStats } from "@/features/gearing/domain/stats/PrimaryStats";
 
 export class Character {
   private readonly characterId: CharacterId;
@@ -41,59 +42,59 @@ export class Character {
   }
 
   strength(): Strength {
-    return this.rorClass.strength
-      .add(this.boots.strength)
-      .add(this.helm.strength)
-      .add(this.belt.strength);
+    return this.items()
+      .map((item) => item.strength)
+      .reduce(addStats)
+      .add(this.rorClass.strength);
   }
 
   ballisticSkill(): BallisticSkill {
-    return this.rorClass.ballisticSkill
-      .add(this.boots.ballisticSkill)
-      .add(this.helm.ballisticSkill)
-      .add(this.belt.ballisticSkill);
+    return this.items()
+      .map((item) => item.ballisticSkill)
+      .reduce(addStats)
+      .add(this.rorClass.ballisticSkill);
   }
 
   intelligence(): Intelligence {
-    return this.rorClass.intelligence
-      .add(this.boots.intelligence)
-      .add(this.helm.intelligence)
-      .add(this.belt.intelligence);
+    return this.items()
+      .map((item) => item.intelligence)
+      .reduce(addStats)
+      .add(this.rorClass.intelligence);
   }
 
   toughness(): Toughness {
-    return this.rorClass.toughness
-      .add(this.boots.toughness)
-      .add(this.helm.toughness)
-      .add(this.belt.toughness);
+    return this.items()
+      .map((item) => item.toughness)
+      .reduce(addStats)
+      .add(this.rorClass.toughness);
   }
 
   weaponSkill(): WeaponSkill {
-    return this.rorClass.weaponSkill
-      .add(this.boots.weaponSkill)
-      .add(this.helm.weaponSkill)
-      .add(this.belt.weaponSkill);
+    return this.items()
+      .map((item) => item.weaponSkill)
+      .reduce(addStats)
+      .add(this.rorClass.weaponSkill);
   }
 
   initiative(): Initiative {
-    return this.rorClass.initiative
-      .add(this.boots.initiative)
-      .add(this.helm.initiative)
-      .add(this.belt.initiative);
+    return this.items()
+      .map((item) => item.initiative)
+      .reduce(addStats)
+      .add(this.rorClass.initiative);
   }
 
   willpower(): Willpower {
-    return this.rorClass.willpower
-      .add(this.boots.willpower)
-      .add(this.helm.willpower)
-      .add(this.belt.willpower);
+    return this.items()
+      .map((item) => item.willpower)
+      .reduce(addStats)
+      .add(this.rorClass.willpower);
   }
 
   wounds(): Wounds {
-    return this.rorClass.wounds
-      .add(this.boots.wounds)
-      .add(this.helm.wounds)
-      .add(this.belt.wounds);
+    return this.items()
+      .map((item) => item.wounds)
+      .reduce(addStats)
+      .add(this.rorClass.wounds);
   }
 
   equipBoots(boots: Boots) {
@@ -119,5 +120,9 @@ export class Character {
 
   private canNotEquip(item: Item): Boolean {
     return !item.rorClass.classId.equals(this.rorClass.classId);
+  }
+
+  private items(): Item[] {
+    return [this.helm, this.belt, this.boots];
   }
 }

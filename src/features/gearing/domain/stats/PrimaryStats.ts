@@ -14,3 +14,7 @@ export abstract class PrimaryStats {
     return this.of(this.value + stats.value);
   }
 }
+
+export function addStats(total: PrimaryStats, stats: PrimaryStats) {
+  return total.add(stats);
+}
